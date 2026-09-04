@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TrailScout
 
-## Getting Started
+Where should I go this weekend?
 
-First, run the development server:
+A small trail discovery app for the Bay Area. You pick **hiking**, a **day**, a **radius**, **distance**, and **difficulty**. TrailScout ranks matching trails using a live trailhead forecast and writes a short trip brief that only restates those numbers.
+
+This is a portfolio project aimed at outdoor recreation software: maps, real-world conditions, and AI used as a summary layer — not as the source of truth.
+
+## What it does
+
+1. Filters a curated set of East & South Bay hikes (not a live AllTrails scrape).
+2. Pulls Saturday/Sunday/today weather from [Open-Meteo](https://open-meteo.com/) at each trailhead: temperature, wind, precipitation chance, sunrise, and the last 48 hours of rain.
+3. Derives surface condition from recent precip (`likely dry` / `possibly damp` / `likely muddy`).
+4. Ranks trails by how well they fit the query **and** how usable the forecast looks.
+5. Writes a 3–4 sentence brief. If `OPENAI_API_KEY` is set, that brief comes from gpt-4o-mini with the forecast JSON as the only input. Otherwise it uses a deterministic template from the same fields.
+
+The model is not allowed to invent hazards, crowds, or weather.
+
+## Stack
+
+- Next.js (App Router) + TypeScript
+- MapLibre GL + OpenFreeMap
+- Open-Meteo Forecast API
+- Optional OpenAI for briefs
+
+## Run it
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000). Location uses the browser if you allow it, otherwise Fremont so Mission Peak still appears.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+cp .env.example .env.local
+# add OPENAI_API_KEY if you want model-written briefs
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Data notes
 
-## Learn More
+Trail geometries are simplified loops from trailhead to high point so the map has something honest to draw. Mileage, elevation, and difficulty are curated, not computed from a DEM.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Briefs summarize Open-Meteo. They are not a substitute for a park report, a ranger, or (in winter) an avalanche forecast.

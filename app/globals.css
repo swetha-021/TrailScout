@@ -1,26 +1,67 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-cream: #e7d8a8;
+  --color-card: #f3ebd0;
+  --color-forest: #2c4c2a;
+  --color-olive: #829328;
+  --color-sage: #91995e;
+  --color-mint: #a4d6c6;
+  --color-sky: #4c7cbe;
+  --color-ink: #2c4c2a;
+  --color-muted: #5a6240;
+  --color-line: #c9c48a;
+  --color-paper: #e7d8a8;
+  --color-paper-2: #f3ebd0;
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-fraunces);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  background: var(--color-cream);
+  color: var(--color-forest);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-image:
+    radial-gradient(circle at 12% -10%, rgba(164, 214, 198, 0.35), transparent 42%),
+    radial-gradient(circle at 90% 0%, rgba(76, 124, 190, 0.12), transparent 36%);
+}
+
+.topo-grid {
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 22px,
+    rgba(44, 76, 42, 0.035) 23px
+  );
+}
+
+.trail-map.leaflet-container,
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  min-height: 28rem;
+  background: #dce6d4;
+  font-family: var(--font-geist-sans), sans-serif;
+}
+
+.leaflet-control-attribution {
+  font-size: 10px;
+  background: #f3ebd0cc !important;
+}
+
+.leaflet-control-attribution a {
+  color: #2c4c2a;
+}
+
+.leaflet-bar a {
+  background: #f3ebd0 !important;
+  color: #2c4c2a !important;
+  border-bottom-color: #c9c48a !important;
 }
