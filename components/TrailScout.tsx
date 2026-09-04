@@ -164,22 +164,22 @@ export default function TrailScout() {
           className="object-cover object-[center_28%] opacity-45"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-forest/35 via-forest/50 to-forest/80" />
-        <div className="relative z-10 mx-auto flex min-h-full w-full max-w-5xl flex-col px-5 py-7 lg:px-8 lg:py-10">
+        <div className="relative z-10 mx-auto flex h-full w-full max-w-5xl flex-col px-5 py-4 md:px-8 md:py-6">
           <div className="flex shrink-0 items-center gap-3">
             <TrailMark />
             <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-cream">
               TrailScout
             </p>
           </div>
-          <div className="flex flex-1 flex-col justify-center py-8">
-            <h1 className="max-w-3xl shrink-0 font-serif text-4xl font-medium leading-[1.12] tracking-tight md:text-6xl">
+          <div className="flex min-h-0 flex-1 flex-col justify-center gap-3 py-3 md:gap-4 md:py-4">
+            <h1 className="max-w-3xl shrink-0 font-serif text-[clamp(1.85rem,4.4vw,3.25rem)] font-medium leading-[1.12] tracking-tight">
               Where should I go this weekend?
             </h1>
-            <p className="mt-4 max-w-md shrink-0 text-base leading-relaxed text-cream/90">
+            <p className="max-w-md shrink-0 text-sm leading-relaxed text-cream/90 md:text-base">
               Named hiking routes near {placeLabel}, ranked by your filters and a
               live trailhead forecast{date ? ` for ${weekdayLabel(date)}` : ""}.
             </p>
-            <div className="relative z-20 mt-8 shrink-0 overflow-visible rounded-[1.6rem] bg-card px-5 py-5 text-forest shadow-[0_16px_40px_rgba(20,40,18,0.22)]">
+            <div className="relative z-20 shrink-0 overflow-visible rounded-[1.35rem] bg-card px-4 py-3.5 text-forest shadow-[0_16px_40px_rgba(20,40,18,0.22)] md:px-5 md:py-4">
               <FilterBar
                 filters={filters}
                 onChange={setFilters}

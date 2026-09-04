@@ -36,7 +36,7 @@ function Chip({
       type="button"
       disabled={disabled}
       onClick={onClick}
-      className={`rounded-full px-3.5 py-1.5 text-xs font-semibold tracking-wide shadow-sm transition-colors disabled:cursor-default ${
+      className={`rounded-full px-3 py-1.5 text-xs font-semibold tracking-wide shadow-sm transition-colors disabled:cursor-default ${
         active
           ? "bg-olive text-cream"
           : "bg-cream text-forest/80 hover:bg-white hover:text-forest"
@@ -49,7 +49,7 @@ function Chip({
 
 function Group({ label, children }: { label: string; children: ReactNode }) {
   return (
-    <div className="flex min-w-0 flex-col gap-1.5">
+    <div className="flex min-w-0 flex-col gap-1">
       <p className="px-0.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-sage">
         {label}
       </p>
@@ -87,7 +87,7 @@ export default function FilterBar({
   }, [query, placeLabel]);
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-3">
       <label className="relative z-20 block">
         <span className="px-0.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-sage">
           Near
@@ -97,7 +97,7 @@ export default function FilterBar({
           onChange={(e) => setQuery(e.target.value)}
           placeholder="City, park, or trailhead"
           autoComplete="off"
-          className="mt-1.5 w-full rounded-full border border-forest/10 bg-cream px-4 py-2.5 text-sm text-forest outline-none placeholder:text-forest/40 focus:border-olive"
+          className="mt-1 w-full rounded-full border border-forest/10 bg-cream px-4 py-2 text-sm text-forest outline-none placeholder:text-forest/40 focus:border-olive"
         />
         {suggestions.length > 0 && (
           <ul className="absolute inset-x-0 bottom-full z-30 mb-1 max-h-44 overflow-y-auto rounded-2xl border border-forest/10 bg-cream shadow-[0_12px_28px_rgba(44,76,42,0.16)]">
@@ -119,12 +119,12 @@ export default function FilterBar({
           </ul>
         )}
       </label>
-      <div className="flex flex-wrap gap-x-6 gap-y-3">
-      <Group label="Activity">
-        <Chip active disabled>
-          Hiking
-        </Chip>
-      </Group>
+      <div className="grid grid-cols-2 gap-x-4 gap-y-2 sm:grid-cols-3 lg:grid-cols-5">
+        <Group label="Activity">
+          <Chip active disabled>
+            Hiking
+          </Chip>
+        </Group>
       <Group label="When">
         {(
           [
@@ -193,7 +193,7 @@ export default function FilterBar({
       <button
         type="button"
         onClick={onSearch}
-        className="w-full rounded-full bg-olive px-5 py-3 text-sm font-semibold tracking-wide text-cream shadow-sm transition-colors hover:bg-[#73821f]"
+        className="w-full rounded-full bg-olive px-5 py-2.5 text-sm font-semibold tracking-wide text-cream shadow-sm transition-colors hover:bg-[#73821f]"
       >
         Search trails
       </button>
